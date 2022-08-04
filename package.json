@@ -1,0 +1,29 @@
+{
+  "name": "@hexlet/code",
+  "version": "1.0.0",
+  "description": "Project number 2",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Wicked93/frontend-project-lvl2.git"
+  },
+  "keywords": [
+    "project2"
+  ],
+  "author": "Anton Zlobin",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Wicked93/frontend-project-lvl2/issues"
+  },
+  "homepage": "https://github.com/Wicked93/frontend-project-lvl2#readme",
+  "type": "module",
+  "bin": {
+    "gendiff": "bin/gendiff.js"
+  },
+  "dependencies": {
+    "commander": "^9.4.0"
+  }
+}
