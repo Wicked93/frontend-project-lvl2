@@ -1,6 +1,6 @@
 import _ from 'lodash';
-import parsers from './bin/parsers.js';
-import stylish from './bin/stylish.js'
+import parsers from './src/parsers.js';
+import getFormatter from './src/formatters/ingex.js'
 
 const analyzeChanges = (obj1, obj2) => {
   const keys = [obj1, obj2].flatMap(Object.keys);
@@ -45,11 +45,10 @@ const analyzeChanges = (obj1, obj2) => {
   return nodes;
 };
 
-export default (filepath1, filepath2) => {
+export default (filepath1, filepath2, formatName) => {
   const obj1 = parsers(filepath1);
   const obj2 = parsers(filepath2);
   const diff = analyzeChanges(obj1, obj2);
-  const result = stylish(diff);
-  const ddd = diff[0]
-  return result;
+  const formatter = getFormatter(formatName);
+  return formatter(diff);
 };
