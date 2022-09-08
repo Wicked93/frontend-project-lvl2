@@ -10,7 +10,7 @@ const getValue = (value) => {
   return '[complex value]';
 };
 
-const getStyle = (obj, path = []) => {
+const getStyle = (obj, path = '') => {
   const {
     key,
     type,
@@ -18,21 +18,11 @@ const getStyle = (obj, path = []) => {
     oldValue,
     children,
   } = obj;
-  if (Array.isArray(children)) {
-    path.push(key);
-  } else {
-    path.pop();
-  }
+
   if (type === 'object') {
-    const flatChildren = children.flatMap((child) => getStyle(child, path));
-    const filteredArray = flatChildren.filter((child) => child !== undefined);
-    return `${filteredArray.join('\n')}`;
+    return children.flatMap((child) => getStyle(child, `${path}${key}.`)).join('\n');
   }
-  const parent = path.join('.');
-  let fullPath = `${parent}.${key}`;
-  if (fullPath.startsWith('.')) {
-    fullPath = fullPath.slice(1);
-  }
+  const fullPath = `${path}${key}`;
   if (type === 'deleted') {
     return `Property '${fullPath}' was removed`;
   }
@@ -42,9 +32,10 @@ const getStyle = (obj, path = []) => {
   if (type === 'changed') {
     return `Property '${fullPath}' was updated. From ${getValue(oldValue)} to ${getValue(value)}`;
   }
+  return [];
 };
 
 export default (diff) => {
-  const result = diff.map((node) => getStyle(node));
-  return `\n${result.join('\n')}\n`;
+  const result = diff.flatMap((node) => getStyle(node));
+  return `${result.join('\n')}`;
 };

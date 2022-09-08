@@ -1,13 +1,15 @@
 import _ from 'lodash';
 
+const getReplacer = (depth, replacer = ' ') => replacer.repeat(depth * 4 - 2);
+
 const getValue = (value, depth = 1) => {
   if (!_.isObject(value)) {
     return value;
   }
   const valueKeys = Object.keys(value);
-  const indent = '  ';
-  const mapKeys = valueKeys.map((key) => `${indent.repeat(depth + 3)}${key}: ${getValue(value[key], depth)}`);
-  return `{\n${mapKeys.join('\n')}\n${indent.repeat(depth + 1)}}`;
+  const replacer = ' ';
+  const mapKeys = valueKeys.map((key) => `${getReplacer(depth + 1)}  ${key}: ${getValue(value[key], depth + 1)}`);
+  return `{\n${mapKeys.join('\n')}\n  ${getReplacer(depth)}}`;
 };
 
 const getStyle = (obj, depth = 1) => {
@@ -23,21 +25,21 @@ const getStyle = (obj, depth = 1) => {
     oldValue,
     children,
   } = obj;
-  const indent = '  ';
+  const replacer = ' ';
   if (type === 'object') {
     const flatChildren = children.flatMap((child) => getStyle(child, depth + 1));
-    return `${indent.repeat(depth)}${key}: {\n${flatChildren.join('\n')}\n${indent.repeat(depth)}}`;
+    return `${getReplacer(depth)}  ${key}: {\n${flatChildren.join('\n')}\n${getReplacer(depth)}  }`;
   }
   if (type === 'deleted') {
-    return `${indent.repeat(depth)}${types[type]} ${key}: ${getValue(value, depth)}`;
+    return `${replacer.repeat(depth * 4 -2)}${types[type]} ${key}: ${getValue(value, depth)}`;
   }
   if (type === 'added') {
-    return `${indent.repeat(depth)}${types[type]} ${key}: ${getValue(value, depth)}`;
+    return `${getReplacer(depth)}${types[type]} ${key}: ${getValue(value, depth)}`;
   }
   if (type === 'unchanged') {
-    return `${indent.repeat(depth)}${types[type]} ${key}: ${getValue(value, depth)}`;
+    return `${getReplacer(depth)}${types[type]} ${key}: ${getValue(value, depth)}`;
   }
-  return `${indent.repeat(depth)}${types.deleted} ${key}: ${getValue(oldValue, depth)}\n${indent.repeat(depth)}${types.added} ${key}: ${getValue(value, depth)}`;
+  return `${getReplacer(depth)}${types.deleted} ${key}: ${getValue(oldValue, depth)}\n${getReplacer(depth)}${types.added} ${key}: ${getValue(value, depth)}`;
 };
 
 export default (diff) => {

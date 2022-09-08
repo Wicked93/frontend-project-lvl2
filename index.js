@@ -1,6 +1,6 @@
 import _ from 'lodash';
 import parsers from './src/parsers.js';
-import getFormatter from './src/formatters/ingex.js'
+import getFormatter from './src/formatters/index.js'
 
 const analyzeChanges = (obj1, obj2) => {
   const keys = [obj1, obj2].flatMap(Object.keys);
