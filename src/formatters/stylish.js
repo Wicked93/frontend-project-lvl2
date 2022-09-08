@@ -7,7 +7,6 @@ const getValue = (value, depth = 1) => {
     return value;
   }
   const valueKeys = Object.keys(value);
-  const replacer = ' ';
   const mapKeys = valueKeys.map((key) => `${getReplacer(depth + 1)}  ${key}: ${getValue(value[key], depth + 1)}`);
   return `{\n${mapKeys.join('\n')}\n  ${getReplacer(depth)}}`;
 };
@@ -25,13 +24,12 @@ const getStyle = (obj, depth = 1) => {
     oldValue,
     children,
   } = obj;
-  const replacer = ' ';
   if (type === 'object') {
     const flatChildren = children.flatMap((child) => getStyle(child, depth + 1));
     return `${getReplacer(depth)}  ${key}: {\n${flatChildren.join('\n')}\n${getReplacer(depth)}  }`;
   }
   if (type === 'deleted') {
-    return `${replacer.repeat(depth * 4 -2)}${types[type]} ${key}: ${getValue(value, depth)}`;
+    return `${getReplacer(depth)}${types[type]} ${key}: ${getValue(value, depth)}`;
   }
   if (type === 'added') {
     return `${getReplacer(depth)}${types[type]} ${key}: ${getValue(value, depth)}`;
