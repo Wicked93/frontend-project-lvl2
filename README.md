@@ -28,5 +28,3 @@ Type:
 
 <h3>Eigth step</h3>
 <a href="https://asciinema.org/a/CEcYhF6v1OR3F6PBgV7raE4di" target="_blank"><img src="https://asciinema.org/a/CEcYhF6v1OR3F6PBgV7raE4di.svg" /></a>
-
-https://asciinema.org/a/tcoEbPAgd9XeX7269ukLCDual
