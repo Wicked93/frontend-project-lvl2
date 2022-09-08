@@ -1,7 +1,7 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/Wicked93/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Wicked93/frontend-project-lvl2/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/d35dcb4c7fca8c6faf55/maintainability)](https://codeclimate.com/github/Wicked93/frontend-project-lvl2/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/d35dcb4c7fca8c6faf55/test_coverage)](https://codeclimate.com/github/Wicked93/frontend-project-lvl2/test_coverage)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/865d1204e256a09818891f565ca74c8689aabab202ee245c8ce7a3203d2a6ab3/test_coverage)](https://codeclimate.com/github/Wicked93/frontend-project-lvl2/test_coverage)
 [![MyTest](https://github.com/Wicked93/frontend-project-lvl2/actions/workflows/test-step.yml/badge.svg)](https://github.com/Wicked93/frontend-project-lvl2/actions/workflows/test-step.yml)
 
 <h1>Вычислитель отличий</h1>
