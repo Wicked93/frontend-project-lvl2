@@ -1,6 +1,6 @@
 import { expect, test } from '@jest/globals';
 import engineDiff from '../index.js';
-import { correctStylishDiff, correctPlainDiff, correctJSONDiff } from '../__fixtures__/correctResults/correctResult.js'
+import { correctStylishDiff, correctPlainDiff, correctJSONDiff } from '../__fixtures__/correctResults/correctResult.js';
 
 test('stylish JSON test', () => {
   const filepath1 = 'file1.json';
