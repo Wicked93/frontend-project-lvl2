@@ -17,20 +17,15 @@ Node.js v12.20.0
 
 ## Инструкция
 Запуск осуществялется командой `gendiff [options], <filepath1> <filepath2>`
+
 Options:
-
     `-V, --version        output the version number`
-
     `-h, --help           output usage information`
-
     `-f, --format <type>  output format`
 
 Type:
-
     `stylish (default)`
-
     `plain`
-
     `json`
 
 <h3>Third step</h3>
