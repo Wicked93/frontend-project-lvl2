@@ -7,16 +7,24 @@
 <h1>Вычислитель отличий</h1>
 <p>"Вычислитель отличий" сравнивает два конфигурационных файлы. Результат сравнения может выводится в разных форматах. </p>
 
+<h2>Минимальные системные требования</h2>
+<p>Node.js v12.20.0</p>
+
+<h2>Инструкция по установке</h2>
+<p>1. Клонируйте репозиторий на свой локадьный компьютер `git clone git@github.com:Wicked93/frontend-project-lvl2.git`</p>
+<p>2. Зайдите в директорию проекта `cd frontend-project-lvl2`</p>
+<p>3. Установите зависимости `make install`</p>
+
 <h2>Инструкция</h2>
-<p>Запуск осуществялется командой gendiff [options] ,<filepath1> <filepath2>
+<p>Запуск осуществялется командой `gendiff [options] ,<filepath1> <filepath2>`
 Options:
-    -V, --version        output the version number
-    -h, --help           output usage information
-    -f, --format <type>  output format
+    `-V, --version        output the version number`
+    `-h, --help           output usage information`
+    `-f, --format <type>  output format`
 Type:
-    stylish (default)
-    plain
-    json</p>
+    `stylish (default)`
+    `plain`
+    `json`</p>
 <h3>Third step</h3>
 <a href="https://asciinema.org/a/3av8pTQByxYKti9pDe5kAGVby" target="_blank"><img src="https://asciinema.org/a/3av8pTQByxYKti9pDe5kAGVby.svg" /></a>
 
