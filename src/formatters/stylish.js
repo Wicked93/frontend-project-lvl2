@@ -17,26 +17,41 @@ const getStyle = (obj, depth = 1) => {
     deleted: '-',
     added: '+',
   };
-  const {
-    key,
-    type,
-    value,
-    oldValue,
-    children,
-  } = obj;
+  const { type } = obj;
   if (type === 'object') {
+    const {
+      key,
+      children,
+    } = obj;
     const flatChildren = children.flatMap((child) => getStyle(child, depth + 1));
     return `${getReplacer(depth)}  ${key}: {\n${flatChildren.join('\n')}\n${getReplacer(depth)}  }`;
   }
   if (type === 'deleted') {
+    const {
+      key,
+      value,
+    } = obj;
     return `${getReplacer(depth)}${types[type]} ${key}: ${getValue(value, depth)}`;
   }
   if (type === 'added') {
+    const {
+      key,
+      value,
+    } = obj;
     return `${getReplacer(depth)}${types[type]} ${key}: ${getValue(value, depth)}`;
   }
   if (type === 'unchanged') {
+    const {
+      key,
+      value,
+    } = obj;
     return `${getReplacer(depth)}${types[type]} ${key}: ${getValue(value, depth)}`;
   }
+  const {
+    key,
+    value,
+    oldValue,
+  } = obj;
   return `${getReplacer(depth)}${types.deleted} ${key}: ${getValue(oldValue, depth)}\n${getReplacer(depth)}${types.added} ${key}: ${getValue(value, depth)}`;
 };
 
