@@ -9,7 +9,7 @@ export const getPath = (filePath) => {
   if (path.isAbsolute(filePath)) {
     content = filePath;
   }
-  content = path.resolve(process.cwd(), `./__fixtures__/${filePath}`);
+  content = path.resolve(process.cwd(), '__fixtures__', filePath);
   return fs.readFileSync(content, 'utf-8');
 };
 
