@@ -5,12 +5,10 @@ import parsers from './src/parsers.js';
 import getFormatter from './src/formatters/index.js';
 
 export const getPath = (filePath) => {
-  let content;
   if (path.isAbsolute(filePath)) {
-    content = filePath;
+    fs.readFileSync(filePath, 'utf-8');
   }
-  content = path.resolve(process.cwd(), '__fixtures__', filePath);
-  return fs.readFileSync(content, 'utf-8');
+  return fs.readFileSync(path.resolve(process.cwd(), '__fixtures__', filePath), 'utf-8');
 };
 
 export const getExtName = (filePath) => path.extname(filePath);
@@ -67,5 +65,4 @@ export default (filepath1, filepath2, formatName) => {
   const obj2 = parsers(path2, extName2);
   const diff = buildTreeOfChanges(obj1, obj2);
   return getFormatter(diff, formatName);
-  
 };
