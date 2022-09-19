@@ -15,7 +15,7 @@ export const getPath = (filePath) => {
 
 export const getExtName = (filePath) => path.extname(filePath);
 
-const analyzeChanges = (obj1, obj2) => {
+const buildTreeOfChanges = (obj1, obj2) => {
   const keys = [obj1, obj2].flatMap(Object.keys);
   const sortKeys = _.sortBy(_.union(keys));
   const nodes = sortKeys.map((key) => {
@@ -24,7 +24,7 @@ const analyzeChanges = (obj1, obj2) => {
       return {
         key,
         type: 'object',
-        children: analyzeChanges(value1, value2),
+        children: buildTreeOfChanges(value1, value2),
       };
     }
     if (!Object.hasOwn(obj1, key) && Object.hasOwn(obj2, key)) {
@@ -65,7 +65,7 @@ export default (filepath1, filepath2, formatName) => {
   const extName2 = getExtName(filepath2);
   const obj1 = parsers(path1, extName1);
   const obj2 = parsers(path2, extName2);
-  const diff = analyzeChanges(obj1, obj2);
-  const formatter = getFormatter(formatName);
-  return formatter(diff);
+  const diff = buildTreeOfChanges(obj1, obj2);
+  return getFormatter(diff, formatName);
+  
 };

@@ -40,7 +40,4 @@ const getStyle = (obj, depth = 1) => {
   return `${getReplacer(depth)}${types.deleted} ${key}: ${getValue(oldValue, depth)}\n${getReplacer(depth)}${types.added} ${key}: ${getValue(value, depth)}`;
 };
 
-export default (diff) => {
-  const result = diff.map((node) => getStyle(node));
-  return `{\n${result.join('\n')}\n}`;
-};
+export default getStyle;

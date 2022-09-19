@@ -35,7 +35,4 @@ const getStyle = (obj, path = '') => {
   return [];
 };
 
-export default (diff) => {
-  const result = diff.flatMap((node) => getStyle(node));
-  return `${result.join('\n')}`;
-};
+export default getStyle;
