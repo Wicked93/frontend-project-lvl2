@@ -1,6 +1,19 @@
 import _ from 'lodash';
+import path from 'path';
+import fs from 'fs';
 import parsers from './src/parsers.js';
 import getFormatter from './src/formatters/index.js';
+
+export const getPath = (filePath) => {
+  let content;
+  if (path.isAbsolute(filePath)) {
+    content = filePath;
+  }
+  content = path.resolve(process.cwd(), `./__fixtures__/${filePath}`);
+  return fs.readFileSync(content, 'utf-8');
+};
+
+export const getExtName = (filePath) => path.extname(filePath);
 
 const analyzeChanges = (obj1, obj2) => {
   const keys = [obj1, obj2].flatMap(Object.keys);
@@ -46,8 +59,12 @@ const analyzeChanges = (obj1, obj2) => {
 };
 
 export default (filepath1, filepath2, formatName) => {
-  const obj1 = parsers(filepath1);
-  const obj2 = parsers(filepath2);
+  const path1 = getPath(filepath1);
+  const extName1 = getExtName(filepath1);
+  const path2 = getPath(filepath2);
+  const extName2 = getExtName(filepath2);
+  const obj1 = parsers(path1, extName1);
+  const obj2 = parsers(path2, extName2);
   const diff = analyzeChanges(obj1, obj2);
   const formatter = getFormatter(formatName);
   return formatter(diff);
