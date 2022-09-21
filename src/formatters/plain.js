@@ -1,6 +1,9 @@
 import _ from 'lodash';
 
 const getValue = (value) => {
+  if (value === null) {
+    return `${value}`;
+  }
   if (_.isObject(value)) {
     return '[complex value]';
   }
@@ -38,4 +41,9 @@ const getStyle = (obj, path = '') => {
   return [];
 };
 
-export default getStyle;
+const formatPlain = (diff) => {
+  const result = diff.flatMap((node) => getStyle(node));
+  return `${result.join('\n')}`;
+};
+
+export default formatPlain;
