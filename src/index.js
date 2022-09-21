@@ -1,7 +1,6 @@
-import _ from 'lodash';
 import path from 'path';
 import fs from 'fs';
-import buildTreeOfChanges from './buildTreeOfChanges.js'
+import buildTreeOfChanges from './buildTreeOfChanges.js';
 import parsers from './parsers.js';
 import getFormatter from './formatters/index.js';
 
