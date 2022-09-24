@@ -4,7 +4,8 @@ const buildTreeOfChanges = (obj1, obj2) => {
   const keys = [obj1, obj2].flatMap(Object.keys);
   const sortKeys = _.sortBy(_.union(keys));
   const nodes = sortKeys.map((key) => {
-    const [value1, value2] = [obj1[key], obj2[key]];
+    const value1 = obj1[key];
+    const value2 = obj2[key];
     if (_.isPlainObject(value1) && _.isPlainObject(value2)) {
       return {
         key,
@@ -26,7 +27,7 @@ const buildTreeOfChanges = (obj1, obj2) => {
         value: value1,
       };
     }
-    if (JSON.stringify(value1) === JSON.stringify(value2)) {
+    if (_.isEqual(value1, value2)) {
       return {
         key,
         type: 'unchanged',

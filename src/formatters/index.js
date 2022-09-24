@@ -1,4 +1,3 @@
-import _ from 'lodash';
 import formatStylish from './stylish.js';
 import formatPlain from './plain.js';
 
@@ -7,9 +6,12 @@ const getFormatter = (diff, nameOfFormat) => {
     return formatPlain(diff);
   }
   if (nameOfFormat === 'json') {
-    return JSON.stringify(_.cloneDeep(diff));
+    return JSON.stringify(diff);
   }
-  return formatStylish(diff);
+  if (nameOfFormat === 'stylish') {
+    return formatStylish(diff);
+  }
+  return Error(`Format ${nameOfFormat} is not found`);
 };
 
 export default getFormatter;
